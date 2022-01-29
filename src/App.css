@@ -1,0 +1,51 @@
+/* li:hover{
+  background-color:rgb(238, 125, 125);
+  opacity:90;
+ color:black;
+  border-radius: 10px;
+  border-color: aliceblue;
+} */
+body{
+  background: rgb(253, 253, 253);
+
+}
+.heading{
+  color: rgb(219, 21, 21);
+
+  text-shadow: darkgray;
+}
+#me{
+  position:absolute;
+  opacity:90%;
+  width:100%;
+  object-fit: cover;
+  height:100%;
+  z-index:-1;
+  margin-top: -157px;
+}
+
+#services{
+  margin-top: 50vh;
+  background-color: rgb(255, 255, 255);
+
+  width: 100%;
+  
+  color: rgb(0, 0, 0);
+}
+.footer{
+  background-color:black;
+  color:blanchedalmond;
+  padding:15px
+}
+/* #abtimg{
+  border-radius: 15%;
+  padding :20px
+} */
+.rounded:hover{
+  background: rgb(206, 201, 201);
+}
+
+
+
+
+
