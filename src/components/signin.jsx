@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+
 import {useHistory} from "react-router-dom"// to navigate to login after registration successful 
 function Signin() {
   const history = useHistory();
@@ -51,7 +51,7 @@ function Signin() {
 
   return (
     <div>
-      <motion.div class="container card w-75 d-flex justify-content-center py-6 p-3"
+      <div class="container card w-75 d-flex justify-content-center py-6 p-3"
       whileTap={{
         scale : 0.9
       }}
@@ -175,7 +175,7 @@ function Signin() {
         <p class="placeholder-wave">
           <span class="placeholder col-12 bg-danger placeholder-xs"></span>
         </p>
-      </motion.div>
+      </div>
     </div>
   );
 }

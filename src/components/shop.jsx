@@ -1,16 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 function Shop() {
-  // const gettodos=async(e)=>{
-  //     e.preventDefault();
-  //     const id = document.getElementById('card')
-  //     const res = await fetch('laundryshop',{
-  //       method:'get',
-  //     })
-  //     const data =await res.json();
-  //     console.log(data);
 
-  //    };
   const [data, setdata] = useState([]);
   const gettodos = () => {
     fetch("laundryshop")
@@ -27,8 +18,8 @@ function Shop() {
 
   return (
     <div>
-      <div>
-        <ul>
+      <div >
+        <ul className="d-flex flex-wrap">
           {data.map((item) => {
             
             return (

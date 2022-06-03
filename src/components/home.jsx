@@ -166,12 +166,6 @@ function Home() {
             we connect you to your laundryshop near you{" "}
           </p>
         </motion.div>
-
-
-
-
-
-        
         <motion.div
           whileHover={{
             scale: 1.1,
