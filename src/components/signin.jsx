@@ -5,7 +5,7 @@ export default function MultiActionAreaCard() {
   return (
     <div className=" d-flex justify-content-center"> 
    
-    <div className="shadow rounded bg-white w-75">
+    <div className="shadow rounded bg-white w-75 my-2">
      <Typography gutterBottom variant="h5" className="text-center my-2" component="div" >
               Register
             </Typography>
@@ -81,7 +81,11 @@ export default function MultiActionAreaCard() {
         </form>
         </div>
         <br />
-    </div>
+      
+    </div> 
+     <div className="d-block d-sm-none">
+          <br /> <br /> <br /> <br />
+        </div>
     </div>
   );
 }

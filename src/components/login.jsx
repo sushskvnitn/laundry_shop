@@ -6,12 +6,21 @@ export default function MultiActionAreaCard() {
   return (
     <div className="container d-flex justify-content-center my-5 logn">
       <Card sx={{ maxWidth: 345 }} className="card m-2 p-2">
-        <iframe src="https://embed.lottiefiles.com/animation/38435" title="hhgj" style={{"pointerEvents":"none"}}></iframe>
-          
-            <Typography gutterBottom variant="h5" component="div" className="logn ">
-              login
-            </Typography>
-        <form method="POST" >
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="div"
+          className="logn text-center px-4"
+        >
+          login
+        </Typography>
+        <iframe
+          src="https://embed.lottiefiles.com/animation/38435"
+          title="hhgj"
+          style={{ pointerEvents: "none" }}
+        ></iframe>
+
+        <form method="POST">
           <div className="form-group">
             <input
               type="email"
@@ -32,18 +41,22 @@ export default function MultiActionAreaCard() {
               id="exampleInputPassword1"
               placeholder="Password"
             />
-          </div>  
-          <Link className="m-2"  to="/signin">
-          <small> new user</small>
-            </Link>
-            <br />
-          
+          </div>
+          <Link className="m-2" to="/signin">
+            <small> new user</small>
+          </Link>
+          <br />
+
           <button type="submit" className="btn btn-primary btn-sm m-2">
-           login
+            login
           </button>
-       
         </form>
       </Card>
+      <div className="d-block d-sm-none">
+        <br /> <br /> <br /> <br />
+      </div>
+      <br />
+      <br />
     </div>
   );
 }

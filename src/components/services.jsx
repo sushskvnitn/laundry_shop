@@ -1,84 +1,99 @@
-import React from 'react'
+import React from "react";
 
 function services() {
-    return (
-        <> <div style={{
-            display: 'grid',
-            placeItems: 'center'}}>
-            <div
-              classname="card"
-              style={{
-                display: 'grid',
-                placeItems: 'center',
-                width: "400px",
-                color: "black",
-                padding: "20px",
-                backgroundColor: "white",
-                borderRadius:"5px",
-                textAlign: "center",
-                textJustify:"auto"
-              }}
-            >
-              <img
-                style={{
-                  padding: "10px",
-                  borderRadius:"5px",
-                }}
-                src="https://images.unsplash.com/photo-1557200134-90327ee9fafa?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&ixid=MnwxfDB8MXxyYW5kb218MHx8Y29udGFjdHx8fHx8fDE2MzkyOTQyOTI&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=300"
-                classname="card-img-top"
-                alt="images"
-              />
-              <div classname="card-body">
-                <h5 classname="card-title">contact us </h5>
-                <p classname="card-text">
-                  <p>
-                    
-                    mail us to :
-                    <a
-                      className="black-text"
-                      href="https://gmail.google.com"
-                      rel="noreferrer"
-                    >
-                      4kstatus.ssk@gmail.com
-                    </a>
-                    <br />
-                  </p>
-                </p>
-              </div>
-              <div classname="card-body">
-                <p classname="card-link">
-                  {" "}
-                  message us on linkedin :{" "}
-                  <a
-                    className="black-text"
-                    href="https://www.linkedin.com/in/sushant-kogurwar-2002/"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    https://www.linkedin.com/in/sushant-kogurwar-2002/
-                  </a>
-                </p>
+  return (
+    <>
+     <h4 className="text-center p-3 font-monospace text-primary bg-white rounded ">
+          We are a team of dedicated and dedicated people who are dedicated to
+          providing you the best services.
+        </h4>
+      <div className=" d-flex justify-content-center my-5 ">
+        <iframe
+          src="https://embed.lottiefiles.com/animation/96365"
+          title="fghfgh"
+          style={{ pointerEvents: "none", height: "18rem", width: "29rem" }}
+        ></iframe>
+      </div>
+      <p>
+       
+        <h5>
+         <p  className="text-start mx-3">  here are some of our services :</p>
+          <ul>
+            <li>
+              <h6 className="text-start p-3 font-monospace">
+                We can book your laundry service for you.
+              </h6>
+            </li>
+            <li>
+              <h6 className="text-start p-3 font-monospace">
+                We can place your shop location here and register it with free
+                of cost.  
+              </h6>
+            </li>
+            <li>
+              <h6 className="text-start p-3 font-monospace">
+                We will provide you a premium services and we connect you easily
+              </h6>
+            </li>
+
+          </ul>
+        </h5>
+      </p>
+      <div
+        style={{
+          display: "grid",
+          placeItems: "center",
+        }}
+      >
+        <div
+          classname="card"
+          style={{
+            display: "grid",
+            placeItems: "center",
+            width: "400px",
+            color: "black",
+            padding: "20px",
+            backgroundColor: "white",
+            borderRadius: "5px",
+            textAlign: "center",
+            textJustify: "auto",
+          }}
+        >
+          <div classname="card-body">
+            <h5 classname="card-title">contact us </h5>
+            <p classname="card-text">
+              <p>
+                mail us to :
+                <a
+                  className="black-text"
+                  href="https://gmail.google.com"
+                  rel="noreferrer"
+                >
+                  4kstatus.ssk@gmail.com
+                </a>
                 <br />
-      
-                <p classname="card-link">
-                  {" "}
-                  message on
-                  instagram :{" "}
-                  <a
-                    className="black-text"
-                    href="https://www.instagram.com/sushant_since_2002/"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    https://www.instagram.com/<br/>sushant_since_2002/
-                  </a>
-                </p>
+              </p>
+            </p>
+          </div>
+          <div classname="card-body">
+            <p classname="card-link">
+              message owner :
+              <a
+                className="black-text"
+                href="https://www.instagram.com/sushant_since_2002/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                https://www.instagram.com/
                 <br />
-              </div>
-            </div>
-            </div>
-          </>
-    )
+                sushant_since_2002/
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
 
-export default services
+export default services;
