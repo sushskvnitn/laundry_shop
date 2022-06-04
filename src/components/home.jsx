@@ -1,6 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
-
+import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { Link } from "react-router-dom";
 function Home() {
   return (
     <>
@@ -21,7 +23,7 @@ function Home() {
           bottom: 40,
         }}
       >
-        &#128222;
+        <ConnectWithoutContactIcon/>
       </motion.button>
       <div
         className="offcanvas offcanvas-start"
@@ -136,6 +138,7 @@ function Home() {
           </motion.div>
           <iframe src="https://embed.lottiefiles.com/animation/108241" id="me" title="hi"></iframe>
         </div>
+        
         {/* <img
           className="rounded mx-auto d-block " 
           id="me"
@@ -148,6 +151,22 @@ function Home() {
         id="services"
         className="container justify-content-center text-center"
       >
+      <div className="d-flex justify-content-end">  <Link className="m-2" to="/shop">
+      <motion.button
+        className="btn btn-outline "
+        style={{ backgroundColor: "#cceaff" }}
+        type="button"
+        drag
+        dragConstraints={{
+          right: 20,
+          left: 10,
+          top: 15,
+          bottom: 40,
+        }}>
+       <AddShoppingCartIcon/>
+      </motion.button>
+       </Link>
+</div>
         <b>
           <h2>Services</h2>
         </b>

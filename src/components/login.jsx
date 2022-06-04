@@ -1,8 +1,34 @@
 import * as React from "react";
+import { useState } from "react";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 export default function MultiActionAreaCard() {
+  const [password, setpassword] = useState("");
+  const [email, setEmail] = useState("");
+  const navigate = useHistory();
+  const loginuser = async (e) => {
+    e.preventDefault();
+    console.log(email, password);
+    const data = {
+      email: email,
+      password: password,
+    };
+    const response = await fetch("/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const user = await response.json();
+    if (response.status === 400 || !user) {
+      alert("invalid credentials");
+    } else {
+      alert("successfully logged in");
+      navigate.push("/");
+    }
+  };
   return (
     <div className="container d-flex justify-content-center my-5 logn">
       <Card sx={{ maxWidth: 345 }} className="card m-2 p-2">
@@ -24,10 +50,13 @@ export default function MultiActionAreaCard() {
           <div className="form-group">
             <input
               type="email"
+              name="email"
               className="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
+              value={email}
               placeholder="Enter email"
+              onChange={(e) => setEmail(e.target.value)}
             />
             <small id="emailHelp" className="form-text text-muted">
               We'll never share your email with anyone else.
@@ -36,10 +65,13 @@ export default function MultiActionAreaCard() {
           <br />
           <div className="form-group">
             <input
+              name="password"
               type="password"
+              value={password}
               className="form-control"
               id="exampleInputPassword1"
               placeholder="Password"
+              onChange={(e) => setpassword(e.target.value)}
             />
           </div>
           <Link className="m-2" to="/signin">
@@ -47,7 +79,11 @@ export default function MultiActionAreaCard() {
           </Link>
           <br />
 
-          <button type="submit" className="btn btn-primary btn-sm m-2">
+          <button
+            type="submit"
+            className="btn btn-primary btn-sm m-2"
+            onClick={loginuser}
+          >
             login
           </button>
         </form>
