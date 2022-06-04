@@ -21,7 +21,10 @@ body{
   object-fit: cover;
   height:100%;
   z-index:-1;
-  margin-top: -157px;
+  margin-top: -180px;
+}
+.logn{
+  cursor: default;
 }
 
 #services{

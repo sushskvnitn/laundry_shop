@@ -3,15 +3,16 @@ import { motion } from "framer-motion";
 
 function Home() {
   return (
-    <><div id="test1"></div>
-   
+    <>
+      <div id="test1"></div>
+
       <motion.button
-        class="btn btn-outline-danger "
+        className="btn btn-outline "
+        style={{ backgroundColor: "#cceaff" }}
         type="button"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasWithBothOptions"
         aria-controls="offcanvasWithBothOptions"
-        
         drag
         dragConstraints={{
           right: 20,
@@ -19,34 +20,34 @@ function Home() {
           top: 5,
           bottom: 40,
         }}
-      > 
+      >
         &#128222;
       </motion.button>
       <div
-        class="offcanvas offcanvas-start"
+        className="offcanvas offcanvas-start"
         tabindex="-1"
         id="offcanvasWithBackdrop"
         aria-labelledby="offcanvasWithBackdropLabel"
       ></div>
       <div
-        class="offcanvas offcanvas-start"
+        className="offcanvas offcanvas-start"
         data-bs-scroll="true"
         tabindex="-1"
         id="offcanvasWithBothOptions"
         aria-labelledby="offcanvasWithBothOptionsLabel"
       >
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">
+        <div className="offcanvas-header">
+          <h5 className="offcanvas-title" id="offcanvasWithBothOptionsLabel">
             contact us
           </h5>
           <button
             type="button"
-            class="btn-close text-reset"
+            className="btn-close text-reset"
             data-bs-dismiss="offcanvas"
             aria-label="Close"
           ></button>
         </div>
-        <div class="offcanvas-body bg-danger">
+        <div className="offcanvas-body" style={{ backgroundColor: "#cceaff" }}>
           <div className="card">
             <div
               style={{
@@ -118,27 +119,29 @@ function Home() {
       </div>
 
       <div className="cover">
-      <div className="w-25">
-      <motion.div    initial={{ x: "100%" }}
-  animate={{ x: "calc(50vw - 50%)"}}
-  transition={{
-    type:"spring",
-    damping:50,
-    stiffness:50
-
-  }}
-
-   className="d-flex flex-wrap">
-        <h1 className="heading text-center">HEY <br /> WELCOME</h1> 
-       
-      </motion.div>
-</div>
-        <img
-          className="rounded mx-auto d-block "
+        <div className="w-25">
+          <motion.div
+            initial={{ x: "100%" }}
+            animate={{ x: "calc(50vw - 50%)" }}
+            transition={{
+              type: "spring",
+              damping: 50,
+              stiffness: 50,
+            }}
+            className="d-flex flex-wrap"
+          >
+            <h1 className="heading text-center" style={{ color: "#0974b2" }}>
+              HEY <br /> WELCOME
+            </h1>
+          </motion.div>
+          <iframe src="https://embed.lottiefiles.com/animation/108241" id="me" title="hi"></iframe>
+        </div>
+        {/* <img
+          className="rounded mx-auto d-block " 
           id="me"
-          src="https://images.unsplash.com/photo-1631098985305-d57413e94950?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=800&ixid=MnwxfDB8MXxyYW5kb218MHx8Ym9va2luZ3x8fHx8fDE2NDE0OTQ0MzI&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1600"
+          src="https://images.unsplash.com/photo-1561053720-76cd73ff22c3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
           alt=""
-        />
+        /> */}
       </div>
 
       <div
@@ -198,12 +201,14 @@ function Home() {
           </p>
         </motion.div>
       </div>
-      
-<ul class="smooth-scroll list-unstyled text-end m-3">
-  <li>
-    <h5><a href="#test1">go to top </a></h5>
-  </li>
-</ul>
+
+      <ul className="smooth-scroll list-unstyled text-end m-3">
+        <li>
+          <h5>
+            <a href="#test1">go to top </a>
+          </h5>
+        </li>
+      </ul>
     </>
   );
 }
