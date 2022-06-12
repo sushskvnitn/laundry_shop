@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-
+import Logo from "./img/remlogo.png";
 function navbar() {
     return (
         <div id='nav'>
@@ -9,7 +9,9 @@ function navbar() {
   <div className="container-fluid">
     <a className="navbar-brand" href="/">
      <b style={{color: 'black',
-    fontSize:'20px'}}> Laundry Me</b></a>
+    fontSize:'20px'}}>
+    <img src={Logo} alt="" height="50rem" width="50rem" />
+     Laundry Me</b></a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
@@ -67,6 +69,13 @@ function navbar() {
                 to="/login"
               >
                 login
+              </Link></li>
+               <li className="nav-item justify-content-end" type="submit"  > 
+              <Link
+                className="nav-link font-monospace"
+                to="/logout"
+              >
+                logout
               </Link></li>
       </ul>
     </div>

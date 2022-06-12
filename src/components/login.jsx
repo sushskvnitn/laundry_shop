@@ -9,7 +9,6 @@ export default function MultiActionAreaCard() {
   const navigate = useHistory();
   const loginuser = async (e) => {
     e.preventDefault();
-    console.log(email, password);
     const data = {
       email: email,
       password: password,

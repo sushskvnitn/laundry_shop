@@ -1,9 +1,31 @@
-import React from "react";
+import React,{ useState, useEffect} from "react";
 import { motion } from "framer-motion";
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { Link } from "react-router-dom";
 function Home() {
+  const [UserName, setUserName] = useState('');
+  const [show, setshow] = useState(false);
+  const userHome = async() => {
+   try {
+     const response = await fetch('/getuser',{
+       method:"GET",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        credentials:"include",
+     });
+      const data = await response.json();
+      setUserName(data.name);
+      setshow(true);
+   } catch (error) {
+     console.log(error);
+   } 
+  }
+  useEffect(() => {
+    userHome();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <>
       <div id="test1"></div>
@@ -121,6 +143,7 @@ function Home() {
       </div>
 
       <div className="cover">
+      
         <div className="w-25">
           <motion.div
             initial={{ x: "100%" }}
@@ -133,8 +156,9 @@ function Home() {
             className="d-flex flex-wrap"
           >
             <h1 className="heading text-center" style={{ color: "#0974b2" }}>
-              HEY <br /> WELCOME
+              HEY  {UserName? UserName.toUpperCase():"WELCOME "} <br />
             </h1>
+            <h3 className="">{show?'Glad, to see you back 😁':' we are Happy to see you '} </h3>
           </motion.div>
           <iframe src="https://embed.lottiefiles.com/animation/108241" id="me" title="hi"></iframe>
         </div>
@@ -167,6 +191,7 @@ function Home() {
       </motion.button>
        </Link>
 </div>
+
         <b>
           <h2>Services</h2>
         </b>

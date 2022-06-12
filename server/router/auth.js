@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../model/userschema");
 const bcrypt = require("bcrypt");
+const authenticate =require("../middleware/authenticate");
 router.post("/register", async (req, res) => {
   const { name, email, phone, address, password, cpassword } = req.body;
   if (!name || !email || !phone || !address || !password || !cpassword) {
@@ -41,6 +42,11 @@ router.post("/login", async (req, res) => {
       return res.status(400).json({ msg: "User does not exist" });
     }
     const isMatch = await bcrypt.compare(password, user.password);
+    const token =await user.generateAuthToken();
+            res.cookie("jwtoken", token  , { 
+              expires: new Date( Date.now() + 25892000000),
+              httpOnly: true
+             });
     if (!isMatch) {
       return res.status(400).json({ msg: "Invalid credentials" });
     }
@@ -50,13 +56,25 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.get("/getdata", async (req, res) => {
+router.get("/getdata",authenticate, async (req, res) => {
   try {
     const user = await User.find();
     res.send(user);
   } catch (error) {
     console.log(error);
   }
+})
+
+router.get("/shop",authenticate,(req, res)=>{
+  res.send(req.user);
+})
+
+router.get("/logout", authenticate,(req, res) => {
+  res.clearCookie("jwtoken",{path:"/"});
+  res.status(200).send("logout");
+});
+router.get('/getuser', authenticate,(req, res) => {
+  res.send(req.user);
 })
 
 module.exports = router;

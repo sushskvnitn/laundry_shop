@@ -3,10 +3,7 @@ import React from "react";
 function services() {
   return (
     <>
-     <h4 className="text-center p-3 font-monospace text-primary bg-white rounded ">
-          We are a team of dedicated and dedicated people who are dedicated to
-          providing you the best services.
-        </h4>
+ 
       <div className=" d-flex justify-content-center my-5 ">
         <iframe
           src="https://embed.lottiefiles.com/animation/96365"
@@ -15,9 +12,8 @@ function services() {
         ></iframe>
       </div>
       <p>
-       
         <h5>
-         <p  className="text-start mx-3">  here are some of our services :</p>
+         <p  className="text-start mx-3" id="tit">  here are some of our services :</p>
           <ul>
             <li>
               <h6 className="text-start p-3 font-monospace">
@@ -60,8 +56,8 @@ function services() {
           }}
         >
           <div classname="card-body">
-            <h5 classname="card-title">contact us </h5>
-            <p classname="card-text">
+            <h5 classname="font_style" id="font_style">contact us </h5>
+            <p classname="card-text ">
               <p>
                 mail us to :
                 <a
@@ -84,9 +80,8 @@ function services() {
                 target="_blank"
                 rel="noreferrer"
               >
-                https://www.instagram.com/
                 <br />
-                sushant_since_2002/
+                click here
               </a>
             </p>
           </div>

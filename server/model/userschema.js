@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const UserSchema = new mongoose.Schema({
       name: {
             type: String,
@@ -11,6 +12,12 @@ const UserSchema = new mongoose.Schema({
       password: { type: String, required: true },
       cpassword: { type: String, required: true },
       date: { type: Date, default: Date.now },
+      tokens:[{
+            token: {
+                  type: String,
+                  required: true
+            }
+      }]
 })
 UserSchema.pre('save',async function(next) {
       if (this.isModified('password')) {
@@ -19,6 +26,18 @@ UserSchema.pre('save',async function(next) {
       }
       next();
 })
+UserSchema.methods.generateAuthToken = async function() {
+      try {
+            const token = jwt.sign({ _id: this._id }, process.env.JWT_KEY);
+            this.tokens = this.tokens.concat({ token });
+            await this.save();
+           //return tokengenerated as we are using it in other method for authentication 
+            return token;
+      } catch (error) {
+            console.error(error);
+      }
+     
+}
 const User = mongoose.model('USER', UserSchema);
 
 module.exports = User;

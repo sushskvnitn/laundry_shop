@@ -7,6 +7,8 @@ import Services from './components/services';
 import Shop from './components/shop';
 import Login from './components/login';
 import Signin from './components/signin';
+import Logout from './components/logout';
+import AddShop from './components/AddShop';
 import {
   BrowserRouter as Router,
   Switch,
@@ -35,6 +37,12 @@ function App() {
           </Route>
           <Route path="/services">
             <Services />
+          </Route>
+            <Route path="/logout">
+            <Logout />
+          </Route> 
+          <Route path="/addshop">
+            <AddShop />
           </Route>
           <Route path="/">
             <Home />

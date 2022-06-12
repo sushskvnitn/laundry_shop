@@ -1,7 +1,31 @@
-import React,{useState,useEffect} from "react";
-import LocalLaundryServiceIcon from '@mui/icons-material/LocalLaundryService';
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
+import LocalLaundryServiceIcon from "@mui/icons-material/LocalLaundryService";
 function Shop() {
   const [data, setdata] = useState([]);
+  const navigate = useHistory();
+  const authuser = async () => {
+    try {
+      const res = await fetch("/shop", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        credentials: "include",
+      });
+      const data = await res.json();
+      console.log(data);
+      // setdata(data);
+      if (!res.status === 200) {
+        alert("error");
+      }
+    } catch (error) {
+      console.log(error);
+      navigate.push("/login");
+    }
+  };
   const gettodos = () => {
     fetch("/getdata")
       .then((response) => response.json())
@@ -10,57 +34,69 @@ function Shop() {
         setdata(json);
         console.log(data);
       });
-  }
+  };
 
- useEffect(() => {
+  useEffect(() => {
     gettodos();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    authuser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   //search address feature
   const [query, setquery] = useState("");
-  const getfilteredItems = (query,data) => {
-   if(!query) return data;
-    return data.filter(item => item.address.toLowerCase().includes(query.toLowerCase()));
-  }
-  const filteredItems = getfilteredItems(query,data);
-
- 
+  const getfilteredItems = (query, data) => {
+    if (!query) return data;
+    return data.filter((item) =>
+      item.address.toLowerCase().includes(query.toLowerCase())
+    );
+  };
+  const filteredItems = getfilteredItems(query, data);
 
   return (
     <div>
       <div className="input-group d-flex justify-content-end ">
         <div className="form-outline">
           <input
-            type="search" value={query}
-            id="form1" onChange={(e) => setquery(e.target.value)}
+            type="search"
+            value={query}
+            id="form1"
+            onChange={(e) => setquery(e.target.value)}
             className="form-control align-middle"
-            placeholder="Search"
+            placeholder="Search location"
           />
         </div>
       </div>
-
-
       <div>
-      <h3> Shops </h3><br />
+        <h3 className="heder"> Shops </h3> 
+        <div className="d-flex justify-content-end ">
+          <Link to="/addshop">
+          <button className="btn btn-primary btn-sm mx-5">Add Shop</button>
+          </Link>
+        </div>
         <ul className="d-flex flex-wrap users">
-         
           {filteredItems.map((item) => {
             return (
-              <div >
-
-                <div  id="maping" style={{margin:"1rem"}}>
-                  <div className="card" style={{width:'18rem'}}>
-                  <div className="d-flex justify-content-center">
-              <img className="img-fluid" style={{"height":"8rem",width:"8rem"}} src="https://media.istockphoto.com/vectors/female-maid-help-man-to-put-clothes-into-washing-machine-vector-id1293206204?k=20&m=1293206204&s=612x612&w=0&h=Ew5LCcsM1ze7q4nPitvFhFChHUEN2ohPHvor9fyaB2o=" alt="" />
-</div>
+              <div>
+                <div id="maping" style={{ margin: "1rem" }}>
+                  <div className="card" style={{ width: "18rem" }}>
+                    <div className="d-flex justify-content-center">
+                      <img
+                        className="img-fluid"
+                        style={{ height: "8rem", width: "8rem" }}
+                        src="https://media.istockphoto.com/vectors/female-maid-help-man-to-put-clothes-into-washing-machine-vector-id1293206204?k=20&m=1293206204&s=612x612&w=0&h=Ew5LCcsM1ze7q4nPitvFhFChHUEN2ohPHvor9fyaB2o="
+                        alt=""
+                      />
+                    </div>
                     <div className="card-body">
                       <h5 className="card-title">{item.name}</h5>
                       <p className="card-text">{item.address}</p>
-                      <div className="d-flex justify-content-end" >
-                      <button   className="btn btn-danger btn-sm rounded-circle px-3" style={{"marginTop":"-4rem"}} >
-                        <LocalLaundryServiceIcon/>
-                      </button>
+                      <div className="d-flex justify-content-end">
+                        <button
+                          className="btn btn-danger btn-sm rounded-circle px-3"
+                          style={{ marginTop: "-4rem" }}
+                        >
+                          <LocalLaundryServiceIcon />
+                        </button>
                       </div>
                     </div>
                   </div>
