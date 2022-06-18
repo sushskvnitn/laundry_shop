@@ -162,15 +162,7 @@ function Home() {
           </motion.div>
           <iframe src="https://embed.lottiefiles.com/animation/108241" id="me" title="hi"></iframe>
         </div>
-        
-        {/* <img
-          className="rounded mx-auto d-block " 
-          id="me"
-          src="https://images.unsplash.com/photo-1561053720-76cd73ff22c3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-          alt=""
-        /> */}
       </div>
-
       <div
         id="services"
         className="container justify-content-center text-center"

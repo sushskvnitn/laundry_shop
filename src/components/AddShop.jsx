@@ -1,6 +1,43 @@
-import React from 'react'
+import React,{ useState} from 'react'
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
+import ClearAllIcon from '@mui/icons-material/ClearAll';
 const AddShop = () => {
+  const [usedata, setdata] = useState({name:"",email:"",shopname:"",shopaddress:"",shopemail:"",phone:"",price:""});
+  const handleinputs = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setdata({...usedata,[name]:value});
+  }
+  const clear = () => {
+    setdata({name:"",email:"",shopname:"",shopaddress:"",shopemail:"",phone:"",price:""});
+  }
+  //send data to server
+  const handlesubmit =async (e) => {
+    e.preventDefault();
+    //object derefrencing
+    const {name,email,shopname,shopaddress,shopemail,phone,price} = usedata; 
+
+    const res = await fetch("/addshop",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+        },
+        body: JSON.stringify({
+          name,email,shopname,shopaddress,shopemail,phone,price
+        })
+        });
+        const userdata = await res.json();
+        console.log(userdata);
+        if(!userdata){
+          alert("Shop not added");
+          console.log("Shop not added");
+        }else{
+          alert("Shop added");
+          console.log("Shop added");
+          setdata({name:"",email:"",shopname:"",shopaddress:"",shopemail:"",phone:"",price:""});
+        }
+        
+  }
   return (
       <> 
     <br />
@@ -8,35 +45,39 @@ const AddShop = () => {
     <div className="d-flex justify-content-center flex-wrap ">
      <iframe src="https://embed.lottiefiles.com/animation/97574" className="rounded m-3" title="fghfgh" style={{ "pointerEvents":"none", backgroundColor:"#cbeaff",height:"auto" }}></iframe>
  <div className="" style={{ width: '65%', height: '100%'}}>
- <form>
+ <form method="POST">
+ <div className="d-flex justify-content-end">
+ <button type="button" onClick={clear} className="btn text-danger align-end btn-block btn-sm "><ClearAllIcon/></button>
+ </div>
   <div className="row ">
     <div className="col">
       <div className="form-outline">
-        <input type="text" id="form6Example1" className="form-control my-3" placeholder="Owner Name" />
+        <input   name="name" value={usedata.name}  onChange={handleinputs} type="text" id="form6Example1" className="form-control my-3" placeholder="Owner Name" />
       </div>
     </div>
     <div className="col">
       <div className="form-outline">
-        <input type="email" id="form6Example2" className="form-control my-3" placeholder="Owner Email" />
+        <input   name="email" value={usedata.email}  onChange={handleinputs} type="email" id="form6Example2" className="form-control my-3" placeholder="Owner Email" />
       </div>
     </div>
   </div>
   <div className="form-outline ">
-    <input type="text" id="form6Example3" className="form-control my-3" placeholder="Shop Name" />
+    <input   name="shopname" value={usedata.shopname} onChange={handleinputs} type="text" id="form6Example3" className="form-control my-3" placeholder="Shop Name" />
   </div>
   <div className="form-outline ">
-    <input type="text" id="form6Example4" className="form-control my-3" placeholder="Shop Address " />
+    <input   name="shopaddress" value={usedata.shopaddress}  onChange={handleinputs} type="text" id="form6Example4" className="form-control my-3" placeholder="Shop Address " />
   </div>
   <div className="form-outline ">
-    <input type="email" id="form6Example5" className="form-control my-3" placeholder="Shop Email Address " />
+    <input   name="shopemail" value={usedata.shopemail}  onChange={handleinputs} type="email" id="form6Example5" className="form-control my-3" placeholder="Shop Email Address " />
   </div>
   <div className="form-outline ">
-    <input type="number" id="form6Example6" className="form-control my-3" placeholder="Phone number" />
+    <input   name="phone" value={usedata.phone} onChange={handleinputs} type="number" id="form6Example6" className="form-control my-3" placeholder="Phone number" />
   </div>
   <div className="form-outline ">
-    <textarea className="form-control my-3" id="form6Example7" rows="3" placeholder="Additional information"></textarea>
+    <textarea name="price" value={usedata.price} onChange={handleinputs}  className="form-control my-3" id="form6Example7" rows="3" placeholder="prices list here (per items)"></textarea>
   </div>
-  <button type="submit" className="btn btn-primary btn-block btn-sm">Submit</button>
+
+  <button type="submit" onClick={handlesubmit}  className="btn btn-primary btn-block btn-sm">Submit</button>
 </form>
  </div>
     </div>

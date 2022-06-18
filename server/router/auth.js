@@ -68,6 +68,24 @@ router.get("/getdata",authenticate, async (req, res) => {
 router.get("/shop",authenticate,(req, res)=>{
   res.send(req.user);
 })
+router.post("/addshop",authenticate,async(req, res)=>{
+ 
+  try {
+     const { name, email, shopname, shopaddress, shopemail, phone, price } = req.body;
+    if (!name || !email || !shopname || !shopaddress || !shopemail || !phone || !price) {
+    res.status(400).json({ msg: "Please fill all the fields" });
+  }
+    const user = await User.findOne({ _id: req.userID });; 
+    if (user) {
+      const userMessage=await user.addMessage( name, email, shopname, shopaddress, shopemail, phone, price);
+      await user.save();
+      res.status(201).json({ success: "shop created successfully " });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
+})
 
 router.get("/logout", authenticate,(req, res) => {
   res.clearCookie("jwtoken",{path:"/"});
