@@ -1,14 +1,20 @@
 import * as React from "react";
 import { useState } from "react";
+import { useContext } from 'react';
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import { Link, useHistory } from "react-router-dom";
+import {UserContext} from "../App"
 export default function MultiActionAreaCard() {
+
+  const {state ,dispatch} = useContext(UserContext);
+  console.log(state);
   const [password, setpassword] = useState("");
   const [email, setEmail] = useState("");
   const navigate = useHistory();
   const loginuser = async (e) => {
     e.preventDefault();
+    
     const data = {
       email: email,
       password: password,
@@ -24,6 +30,7 @@ export default function MultiActionAreaCard() {
     if (response.status === 400 || !user) {
       alert("invalid credentials");
     } else {
+      dispatch({ type: "USER", payload: true });
       alert("successfully logged in");
       navigate.push("/");
     }

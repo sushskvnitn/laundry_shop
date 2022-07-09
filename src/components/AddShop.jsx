@@ -40,7 +40,10 @@ const AddShop = () => {
   }
   return (
       <> 
-    <br />
+    <div className="alert alert-warning alert-dismissible  show text-danger mx-4 m-1 " role="alert">
+  <strong  >NOTE: You are requested to add shops in your locality only ‼️.</strong>
+  <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
       <h2 className=" text-bold h2  text-center w-50 ">Add Shop <AddBusinessIcon style={{color:"#4dabf5",height:"4rem"}}  /></h2>
     <div className="d-flex justify-content-center flex-wrap ">
      <iframe src="https://embed.lottiefiles.com/animation/97574" className="rounded m-3" title="fghfgh" style={{ "pointerEvents":"none", backgroundColor:"#cbeaff",height:"auto" }}></iframe>

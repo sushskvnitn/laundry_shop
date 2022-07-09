@@ -161,8 +161,8 @@ export default function MultiActionAreaCard() {
         <br />
       </div>
       <div className="d-block d-sm-none">
-        <br /> <br /> <br /> <br />
-      </div>
+        
+      </div><br /> <br /> <br /> <br />
     </div>
   );
 }

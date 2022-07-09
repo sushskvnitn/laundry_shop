@@ -1,3 +1,4 @@
+import React ,{createContext,useReducer} from 'react';
 import './App.css';
 import Navbar from "./components/navbar"
 import Footer from './components/footer';
@@ -13,43 +14,57 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-
 } from "react-router-dom";
-function App() {
+import {initialState,reducer} from "../src/reducer/UseReducer";
+//context api 
+export  const UserContext = createContext();
+
+const Routing = () => {
   return (
+    <Switch>
+   
+    <Route path="/about">
+      <About />
+    </Route>
+    <Route path="/shop">
+      <Shop />
+    </Route>
+    <Route path="/login">
+      <Login />
+    </Route>
+    <Route path="/signin">
+      <Signin />
+    </Route>
+    <Route path="/services">
+      <Services />
+    </Route>
+      <Route path="/logout">
+      <Logout />
+    </Route> 
+    <Route path="/addshop">
+      <AddShop />
+    </Route>
+    <Route path="/">
+      <Home />
+    </Route> 
+  </Switch>
+
+  )
+}
+
+const App=() => {
+  const [state, dispatch] = useReducer(reducer, initialState)
+
+  return (
+   
     <div className="App">
+      <UserContext.Provider value={{state,dispatch}} >
   <Router>
 
    <Navbar/>
-        <Switch>
-     
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/shop">
-            <Shop />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/signin">
-            <Signin />
-          </Route>
-          <Route path="/services">
-            <Services />
-          </Route>
-            <Route path="/logout">
-            <Logout />
-          </Route> 
-          <Route path="/addshop">
-            <AddShop />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route> 
-        </Switch>
-    
+    <Routing/>   
     </Router>
+    </UserContext.Provider> 
   <Footer/>
     </div>
   );

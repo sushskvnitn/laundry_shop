@@ -1,14 +1,78 @@
-import React from 'react'
+import React,{useContext,useEffect,useState} from 'react'
 import { Link } from "react-router-dom";
 import Logo from "./img/remlogo.png";
-function navbar() {
+import {UserContext} from "../App"
+import LocalAtmIcon from '@mui/icons-material/LocalAtm';
+function Navbar() {
+  // eslint-disable-next-line no-unused-vars
+  const {state ,dispatch} = useContext(UserContext);
+  const [data, setdata] = useState('');
+  const userHome = async() => {
+    try {
+      const response = await fetch('/getuser',{
+        method:"GET",
+         headers:{
+           "Content-Type":"application/json"
+         },
+      });
+       const data = await response.json();
+       setdata(data.coins);
+
+    } catch (error) {
+      console.log(error);
+    } 
+   }
+   useEffect(() => {
+      userHome();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+  const RenderMenu =()=>{
+    if(state){
+      return (
+        <>
+          <div className="coins align-center py-2 mx-2"> <b className="mx-1 font-monospace" > {data}</b>
+           <LocalAtmIcon  fontSize="small" color="warning" /> </div> 
+          <li className="nav-item justify-content-end" type="submit"  >
+              
+              <Link
+                className="nav-link fw-normal"
+                to="/logout"
+              >
+                logout
+              </Link>
+              </li>
+            
+        </>
+      )
+    }else{
+      return(
+        <>
+          <li className="nav-item justify-content-end" type="submit"  >
+       <Link
+                className="nav-link fw-normal"
+                to="/signin"
+              >
+                Signin
+              </Link></li> 
+       <li className="nav-item justify-content-end" type="submit"  > 
+       <Link
+                className="nav-link fw-normal"
+                to="/login"
+              >
+                login
+              </Link></li>
+     
+        </>
+      )
+    }
+  }
+
     return (
         <div id='nav'>
-          
 <nav className="navbar navbar-expand-lg  navbar-light "  style={{"backgroundColor":"#cceaff"}} >
   <div className="container-fluid">
     <a className="navbar-brand" href="/">
-     <b style={{color: 'black',
+     <b className="fw-bolder" style={{color: 'black',
     fontSize:'20px'}}>
     <img src={Logo} alt="" height="50rem" width="50rem" />
      Laundry Me</b></a>
@@ -19,9 +83,9 @@ function navbar() {
       
       <ul className="navbar-nav me-auto mb-2 mb-lg-0" style={{color: 'white',
     }}>
-            <li className="nav-item justify-content-end ">
+    <li className="nav-item justify-content-end ">
               <Link
-                className="nav-link font-monospace"
+                className="nav-link fw-normal"
                 to="/"
               >
                  Home <span className="sr-only">(current)</span>
@@ -29,7 +93,7 @@ function navbar() {
             </li>
             <li className="nav-item">
               <Link
-                className="nav-link font-monospace"
+                className="nav-link fw-normal"
                 to="/about"
               >
                  About
@@ -37,7 +101,7 @@ function navbar() {
             </li>
             <li className="nav-item">
               <Link
-                className="nav-link font-monospace"
+                className="nav-link fw-normal"
                 to="/shop"
               >
                 shop
@@ -45,38 +109,18 @@ function navbar() {
             </li>
             <li className="nav-item">
               <Link
-                className="nav-link font-monospace"
+                className="nav-link fw-normal"
                 to="/services"
               >
                 services
               </Link>
             </li>
-
+            
       </ul>
 
      <ul className="navbar-nav  mb-2 ">
+       <RenderMenu/>
        
-       <li className="nav-item justify-content-end" type="submit"  >
-       <Link
-                className="nav-link font-monospace"
-                to="/signin"
-              >
-                Signin
-              </Link></li> 
-       <li className="nav-item justify-content-end" type="submit"  > 
-       <Link
-                className="nav-link font-monospace"
-                to="/login"
-              >
-                login
-              </Link></li>
-               <li className="nav-item justify-content-end" type="submit"  > 
-              <Link
-                className="nav-link font-monospace"
-                to="/logout"
-              >
-                logout
-              </Link></li>
       </ul>
     </div>
   </div>
@@ -87,4 +131,4 @@ function navbar() {
     )
 }
 
-export default navbar
+export default Navbar

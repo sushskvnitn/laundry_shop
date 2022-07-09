@@ -49,14 +49,14 @@ function Home() {
       </motion.button>
       <div
         className="offcanvas offcanvas-start"
-        tabindex="-1"
+        tabIndex="-1"
         id="offcanvasWithBackdrop"
         aria-labelledby="offcanvasWithBackdropLabel"
       ></div>
       <div
         className="offcanvas offcanvas-start"
         data-bs-scroll="true"
-        tabindex="-1"
+        tabIndex="-1"
         id="offcanvasWithBothOptions"
         aria-labelledby="offcanvasWithBothOptionsLabel"
       >
@@ -80,7 +80,7 @@ function Home() {
               }}
             >
               <div
-                classname="card"
+                className="card"
                 style={{
                   display: "grid",
                   placeItems: "center",
@@ -99,13 +99,13 @@ function Home() {
                     borderRadius: "5px",
                   }}
                   src="https://source.unsplash.com/200x200/?phone"
-                  classname="card-img-top"
+                  className="card-img-top"
                   alt="images"
                 />
-                <div classname="card-body">
-                  <h5 classname="card-title">contact us </h5>
-                  <p classname="card-text">
-                    <p>
+                <div className="card-body">
+                  <h5 className="card-title">contact us </h5>
+                  <div className="card-text">
+                    <div>
                       mail us to :
                       <a
                         className="black-text"
@@ -115,27 +115,10 @@ function Home() {
                         4kstatus.ssk@gmail.com
                       </a>
                       <br />
-                    </p>
-                  </p>
+                    </div>
+                  </div>
                 </div>
-                <div classname="card-body">
-                  <br />
-
-                  <p classname="card-link">
-                    message on instagram :(for help only )
-                    <a
-                      className="black-text"
-                      href="https://www.instagram.com/sushant_since_2002/"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      https://www.instagram.com/
-                      <br />
-                      sushant_since_2002/
-                    </a>
-                  </p>
-                  <br />
-                </div>
+               
               </div>
             </div>
           </div>
@@ -158,7 +141,7 @@ function Home() {
             <h1 className="heading text-center" style={{ color: "#0974b2" }}>
               HEY  {UserName? UserName.toUpperCase():"WELCOME "} <br />
             </h1>
-            <h3 className="">{show?'Glad, to see you back 😁':' we are Happy to see you '} </h3>
+            <h3 className="text-center">{show?'Glad, to see you back 😁':' we are Happy to see you '} </h3>
           </motion.div>
           <iframe src="https://embed.lottiefiles.com/animation/108241" id="me" title="hi"></iframe>
         </div>

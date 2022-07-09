@@ -44,7 +44,7 @@ router.post("/login", async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     const token =await user.generateAuthToken();
             res.cookie("jwtoken", token  , { 
-              expires: new Date( Date.now() + 25892000000),
+              expires: new Date( Date.now() + 600000),
               httpOnly: true
              });
     if (!isMatch) {
@@ -91,6 +91,7 @@ router.get("/logout", authenticate,(req, res) => {
   res.clearCookie("jwtoken",{path:"/"});
   res.status(200).send("logout");
 });
+
 router.get('/getuser', authenticate,(req, res) => {
   res.send(req.user);
 })

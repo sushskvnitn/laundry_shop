@@ -6,6 +6,8 @@ import LocalLaundryServiceIcon from "@mui/icons-material/LocalLaundryService";
 import CloseIcon from "@mui/icons-material/Close";
 import SendIcon from "@mui/icons-material/Send";
 import axios from "axios";
+import CallIcon from '@mui/icons-material/Call';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 function Shop() {
   const [data, setdata] = useState([]);
   const [shopdata, setshopdata] = useState([]);
@@ -60,7 +62,7 @@ function Shop() {
     const { to, name, address, email, phone, date, time } = connect;
     await axios
       .post("/sendmail", connect)
-      .then((response) => alert("mail sent"))
+      .then((response) => alert("mail sent successfully !! , shop keeper will contact you soon !!"))
       ;
   };
 
@@ -81,46 +83,50 @@ function Shop() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  //search address feature
-  // const [query, setquery] = useState("");
-  // const getfilteredItems = (query, data) => {
-  //   if (!query) return data;
-  //   return data.filter((item) =>
-  //     item.address.toLowerCase().includes(query.toLowerCase())
-  //   );
-  // };
-  // const filteredItems = getfilteredItems(query, data);
+  // search address feature
+  const [query, setquery] = useState("");
+  const getfilteredItems = (query, data) => {
+    if (!query) return data;
+    return data.filter((item) =>
+      item.address.toLowerCase().includes(query.toLowerCase())
+    );
+  };
+  const filteredItems = getfilteredItems(query, data);
 
   return (
     <div>
+    <div id="test2"></div>
       <div className="input-group d-flex justify-content-end ">
-        <div className="form-outline">
+        <div className="form-outline m-1">
           <input
             type="search"
-            // value={query}
+            value={query}
             id="form1"
-            // onChange={(e) => setquery(e.target.value)}
+            onChange={(e) => setquery(e.target.value)}
             className="form-control align-middle"
             placeholder="Search location"
           />
         </div>
       </div>
       <div>
-        <h3 className="heder"> Shops </h3>
+        <h3 className="fw-bold mx-4"> Shops </h3>
         <div className="d-flex justify-content-end ">
           <Link to="/addshop">
             <button className="btn btn-primary btn-sm mx-5">Add Shop</button>
           </Link>
         </div>
         <ul className=" users">
-          {data.map((item) => {
+          {filteredItems.map((item) => {
             return (
               <div className="d-flex flex-wrap">
+              
                 {item &&
                   item.shops &&
                   item.shops.map(function (shop) {
                     return (
+                      
                       <div id="maping" style={{ margin: "1rem" }}>
+                     <strong>  <b><h6 className="text-end bg-danger text-white shadow  rounded p-1" >{item.address}</h6></b></strong>
                         <div className="card" style={{ width: "18rem" }}>
                           <div>
                             <div className="d-flex justify-content-center">
@@ -132,7 +138,7 @@ function Shop() {
                               />
                             </div>
                             <div className="card-body">
-                              <h5 className="card-title">{shop.name}</h5>
+                              <h5 className="card-title">{shop.shopname}</h5>
                               <p className="card-text">
                                 address :{shop.shopaddress}
                               </p>
@@ -169,7 +175,7 @@ function Shop() {
                                     <div className="modal-content">
                                       <div className="modal-header">
                                         <h5
-                                          className="modal-title"
+                                          className="modal-title fw-bold "
                                           id="exampleModalLabel"
                                         >
                                           shop: {shopdata.name}
@@ -195,7 +201,7 @@ function Shop() {
                                           owner email
                                           <input 
                                             type="email"
-                                            className="input form-control"
+                                            className="input form-control disabled"
                                             aria-describedby="emailHelp"
                                             placeholder="Email id of shopkeeper"
                                             value={connect.to}
@@ -295,7 +301,7 @@ function Shop() {
                                         </div>
                                       </div>
                                       <div className="modal-footer">
-                                        <button
+                                      <button
                                           type="button"
                                           className="btn btn-danger btn-sm"
                                           data-bs-dismiss="modal"
@@ -303,6 +309,13 @@ function Shop() {
                                         >
                                           <CloseIcon />
                                         </button>
+                                      <div className="d-flex justify-content-start">
+                                       <a  className="btn btn-primary btn-sm" href={`https://wa.me/${shopdata.phone}`} 
+                                            target="_blank" rel="noreferrer" ><WhatsAppIcon/></a>
+                                      <a  className="btn btn-primary btn-sm"
+                                           href={`tel:${shopdata.phone}`}> <CallIcon/> </a>        
+                                      </div>
+         
                                         <button
                                           type="button"
                                           className="btn btn-primary btn-sm"
@@ -325,6 +338,13 @@ function Shop() {
             );
           })}
         </ul>
+        <ul className="smooth-scroll list-unstyled text-end m-3">
+        <li>
+          <h5>
+            <a href="#test2">go to top </a>
+          </h5>
+        </li>
+      </ul>
       </div>
     </div>
   );
